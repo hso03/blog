@@ -14,7 +14,7 @@ content fragment에 해당되는 곳에 추가 됩니다.
     </head>
 
     <body>
-    <div layout:fragment="content" th:if="${param} == ">
+    <div layout:fragment="content">
         <article class="blog-post" th:each="listPost : ${postResponseList}">
             <h2 class="display-5 link-body-emphasis mb-1" th:text="${listPost.postTitle}"></h2>
             <p class="blog-post-meta">생성일자 : <span th:text="${#temporals.format(listPost.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>

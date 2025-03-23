@@ -65,10 +65,10 @@ public class IndexController {
         return topicService.subTopicList(topicId);
     }
 
-    @ModelAttribute("subTopicPostList")
-    public List<PostResponse> subTopicPosts(){
-
-
-        return null;
-    }
+//    @ModelAttribute("subTopicPostList")
+//    public List<PostResponse> subTopicPosts(){
+//
+//
+//        return null;
+//    }
 }
