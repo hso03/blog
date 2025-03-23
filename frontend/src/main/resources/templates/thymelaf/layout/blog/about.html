@@ -1,0 +1,10 @@
+<th:block xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+  <div class="p-4 mb-3 bg-body-tertiary rounded">
+    <h4 class="fst-italic">About</h4>
+    <p>닉네임 : <span th:text="${blogResponse.blogMbNickname}"></span></p>
+    <p>설명 : <span th:text="${blogResponse.blogDescription}"></span></p>
+    <a th:href="'http://java21.net/blog/' + ${blogResponse.blogFid}">링크 : http://java21.net/blog/<span th:text="${blogResponse.blogFid}"></span></a>
+    <p>생성일자 : <span th:text="${#temporals.format(blogResponse.createAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+<!--    <p>설명 : <span th:text="${blogResponse}"></span></p>-->
+  </div>
+</th:block>

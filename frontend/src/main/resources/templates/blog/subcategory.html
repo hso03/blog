@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:margin-bottom="http://www.w3.org/1999/xhtml"
+      xmlns:display="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서브 카테고리 등록</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 8px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>서브 카테고리 등록</h1>
+</header>
+
+<main>
+  <h3><span th:text="${categoryResponse.categoryName}"></span>의 서브카테고리 등록</h3>
+  <form method="POST" th:action="@{|/blog/${blogFid}/category/subCategoryAction|}">
+    <input type="hidden" name="blogFid" th:value="${blogFid}" />
+    <input type="hidden" name="categoryPid" th:value="${categoryResponse.categoryId}" />
+    <div class="form-group">
+      <label for="categoryName">카테고리 이름</label>
+      <input type="text" id="categoryName" name="categoryName" required placeholder="제목을 입력하세요">
+    </div>
+    <div class="form-group">
+      <label for="categorySec">카테고리 순서</label>
+      <input type="text" value="1" min="0" max="10" id="categorySec" name="categorySec"/>
+    </div>
+    <div>
+      <h3>토픽 선택 필수!</h3>
+      <nav>
+        <button th:each="rootTopic : ${rootTopics}"
+                th:text="${rootTopic.topicName}"
+                type="button"
+                th:value="${rootTopic.topicId}"
+                th:attr="data-blog-fid=${blogFid}"
+                onclick="loadSubTopics(this.value, this.getAttribute('data-blog-fid'))"
+                style="display: block">
+        </button>
+      </nav>
+      <div id="subTopicsContainer"></div>
+    </div>
+    <script>
+      function loadSubTopics(topicId, blogFid) {
+        console.log("topicId:", topicId, "blogFid:", blogFid);
+        fetch(`http://localhost:8000/blog/${blogFid}/category/subTopics?topic_id=` + topicId) // AJAX 요청
+                .then(response => response.json()) // JSON 변환
+                .then(data => {
+                  let subTopicsHtml = '<ul>';
+                  data.forEach((subTopic, index) => {
+                    subTopicsHtml += `
+                    <li>
+                        <input type="radio" id="subTopic${index}" name="subTopicId" value="${subTopic.topicId}">
+                        <label for="subTopic${index}">${subTopic.topicName}</label>
+                    </li>`;
+                  });
+                  subTopicsHtml += '</ul>';
+                  document.getElementById('subTopicsContainer').innerHTML = subTopicsHtml;
+                })
+                .catch(error => console.error('Error:', error));
+      }
+    </script>
+
+    <div class="form-group">
+      <button type="submit">작성 완료</button>
+    </div>
+  </form>
+</main>
+</body>
+</html>

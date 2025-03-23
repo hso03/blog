@@ -1,0 +1,30 @@
+<!--/*
+    TODO#2-6 blog 페이지 입니다.
+    - http://localhost:8080/blog/marco/index.do , marco <-- blog를 식별할 수 있는 id입니다.
+    - blog 페이지의 layout을 설정하기 위해서 html 테그에 아래와 같이 설정 합니다.
+        + layout:decorate="@{/thymelaf/layout/blog/layout.html}"
+    - thymeleaf layout 관련해서는 아래 링크를 참고 하세요
+        + https://github.com/ultraq/thymeleaf-layout-dialect?tab=readme-ov-file
+        + https://ultraq.github.io/thymeleaf-layout-dialect/
+*/-->
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="@{/thymelaf/layout/blog/layout.html}">
+<head>
+    <title>blog - index - page</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <article class="blog-post" th:each="listPost : ${postResponseList}">
+        <h2 class="display-5 link-body-emphasis mb-1" th:text="${listPost.postTitle}"></h2>
+        <p class="blog-post-meta">생성일자 : <span th:text="${#temporals.format(listPost.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+        <p>루트 카테고리 : <span th:text="${listPost.parentCategoryName}"></span></p>
+        <p>서브 카테고리 : <span th:text="${listPost.categoryName}"></span></p>
+        <p>토픽 : <span th:text="${listPost.topicName}"></span></p>
+        <p th:text="${listPost.postContent}"></p>
+    </article>
+</div>
+</body>
+</html>

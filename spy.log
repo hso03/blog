@@ -1,0 +1,4 @@
+1741928464521|0|rollback|connection 15|url jdbc:h2:testdb:/home/nhnacademy/다운로드||
+1741938104310|0|rollback|connection 16|url jdbc:h2:testdb:/home/nhnacademy/다운로드||
+1742108724742|3|statement|connection 14|url jdbc:h2:testdb:/home/nhnacademy/다운로드|/* <criteria> */ select m1_0.mb_no from members m1_0 where m1_0.mb_email=? fetch first ? rows only|/* <criteria> */ select m1_0.mb_no from members m1_0 where m1_0.mb_email='marco@nhnacademy.com' fetch first 1 rows only
+1742108724751|0|rollback|connection 14|url jdbc:h2:testdb:/home/nhnacademy/다운로드||

@@ -1,0 +1,34 @@
+#container{
+    width: 300px;
+    margin:auto;
+}
+
+.input-holder{
+    width:100%;
+    margin-top:10px;
+}
+
+.input-holder > input{
+    width:100%;
+}
+
+.input-holder >button{
+    float:right;
+    margin-top:10px;
+    width:150px;
+}
+
+.myinfo{
+    border-collapse: collapse;
+    width:500px;
+}
+
+.myinfo th,td {
+    border-width: 1px;
+    border-style: solid;
+    padding:5px;
+}
+
+.myinfo > tfoot {
+    text-align:right;
+}
