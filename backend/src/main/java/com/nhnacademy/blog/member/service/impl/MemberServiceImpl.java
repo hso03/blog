@@ -134,15 +134,7 @@ public class MemberServiceImpl implements MemberService {
                 memberUpdateRegister.getMbMobile()
         );
         // no, email, name, mobile, create, update, withdrwal
-        return new MemberResponse(
-                member.getMbNo(),
-                member.getMbEmail(),
-                member.getMbName(),
-                member.getMbMobile(),
-                member.getCreatedAt(),
-                member.getUpdatedAt(),
-                member.getWithdrawalAt()
-        );
+        return new MemberResponse(member.getMbNo(), member.getMbEmail(), member.getMbName(), member.getMbMobile(), member.getCreatedAt(), member.getUpdatedAt(), member.getWithdrawalAt());
     }
     @Override
     public MemberResponse withdrawalMember(Long mbNo) {

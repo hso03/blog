@@ -1,13 +1,11 @@
 package com.nhnacademy.blog.common.advice;
 
-import com.nhnacademy.blog.BlogApplication;
 import com.nhnacademy.blog.common.exception.CommonHttpException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.validation.BindException;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
 import java.util.ArrayList;
